@@ -1,0 +1,7 @@
+import Header from "../_components/Header";
+import Footer from "../_components/Footer";
+import ArticleCard from "../_components/ArticleCard";
+import { articles } from "@/lib/content";
+
+export const metadata = { title: "Medicine research & news | Medico" };
+export default function ResearchPage() { const research = articles.filter((article) => ["Research", "Medicine"].includes(article.category)); return <><Header /><main className="mesh min-h-screen px-5 py-16 sm:px-8"><div className="mx-auto max-w-7xl"><p className="font-bold uppercase tracking-[.2em] text-teal-600">Research & medicine news</p><h1 className="mt-3 max-w-3xl text-5xl font-extrabold tracking-tight text-slate-900">Clear context for health news.</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">A calmer way to understand medicine updates and research headlines. We focus on what the findings mean, what they do not mean, and questions to ask a professional.</p><div className="mt-10 rounded-3xl border border-indigo-100 bg-indigo-50 p-7"><p className="font-bold text-indigo-900">Before you act on a health headline</p><p className="mt-2 max-w-2xl leading-7 text-indigo-800">New research rarely changes personal treatment overnight. Discuss medication changes, symptoms, and care decisions with a qualified doctor or pharmacist.</p></div><div className="mt-10 grid gap-6 md:grid-cols-2">{research.map((article) => <ArticleCard key={article.slug} article={article}/>)}</div></div></main><Footer /></>; }

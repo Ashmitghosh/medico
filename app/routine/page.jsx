@@ -1,0 +1,7 @@
+import Header from "../_components/Header";
+import Footer from "../_components/Footer";
+import ArticleCard from "../_components/ArticleCard";
+import { articles, dailyBrief } from "@/lib/content";
+
+export const metadata = { title: "Healthy routine | Medico" };
+export default function RoutinePage() { const lifestyle = articles.filter((article) => article.category === "Lifestyle"); return <><Header /><main className="mesh min-h-screen px-5 py-16 sm:px-8"><div className="mx-auto max-w-7xl"><p className="font-bold uppercase tracking-[.2em] text-teal-600">Healthy routines</p><h1 className="mt-3 text-5xl font-extrabold tracking-tight text-slate-900">Small habits. Real momentum.</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Build a routine that supports your energy, rest, movement, and mental wellbeing—one sensible step at a time.</p><div className="mt-10 grid gap-5 md:grid-cols-3">{dailyBrief.map((brief) => <div key={brief.title} className="care-card rounded-3xl border border-white bg-white/80 p-6"><span className="text-3xl">{brief.emoji}</span><h2 className="mt-4 font-extrabold text-slate-900">{brief.title}</h2><p className="mt-2 leading-6 text-slate-600">{brief.text}</p></div>)}</div><h2 className="mt-16 text-2xl font-extrabold">Lifestyle reads</h2><div className="mt-6 grid gap-6 md:grid-cols-2">{lifestyle.map((article) => <ArticleCard key={article.slug} article={article}/>)}</div></div></main><Footer /></>; }

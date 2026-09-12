@@ -1,0 +1,8 @@
+import Link from "next/link";
+import { ArrowLeft, Clock3, ShieldCheck } from "lucide-react";
+import Header from "../../_components/Header";
+import Footer from "../../_components/Footer";
+import { articles } from "@/lib/content";
+
+export function generateStaticParams() { return articles.map(({ slug }) => ({ slug })); }
+export default function ArticlePage({ params }) { const article = articles.find((item) => item.slug === params.slug); if (!article) return <main className="p-10">Article not found.</main>; return <><Header /><main className="mesh min-h-screen px-5 py-14 sm:px-8"><article className="mx-auto max-w-3xl"><Link href="/blog" className="inline-flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-teal-600"><ArrowLeft size={17}/> All articles</Link><div className={`mt-8 grid h-52 place-items-center rounded-[2rem] bg-gradient-to-br ${article.color} text-8xl shadow-xl`}>{article.emoji}</div><p className="mt-9 text-sm font-bold uppercase tracking-[.2em] text-teal-600">{article.category} · {article.date}</p><h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl">{article.title}</h1><p className="mt-5 flex items-center gap-2 text-sm text-slate-500"><Clock3 size={16}/>{article.readTime}</p><div className="mt-10 space-y-6 text-lg leading-8 text-slate-700">{article.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div><div className="mt-10 flex gap-3 rounded-2xl border border-teal-100 bg-teal-50 p-5 text-sm leading-6 text-teal-900"><ShieldCheck className="mt-1 shrink-0 text-teal-600" size={20}/> Educational content only—this does not replace advice from a doctor or pharmacist.</div></article></main><Footer /></>; }
